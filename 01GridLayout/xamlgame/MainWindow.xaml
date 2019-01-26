@@ -19,6 +19,16 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <fa:ImageAwesome Icon="Check" Margin="40"/>
+                <fa:ImageAwesome Icon="Microchip" Grid.Column="1" Margin="10"/>
+            </Grid>
+
+
             <WrapPanel HorizontalAlignment="Center">
                 <Label Margin="5" Padding="5" Content="Pontszám"/>
                 <Label Margin="5" Padding="5" Content="px"/>
