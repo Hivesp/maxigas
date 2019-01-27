@@ -26,14 +26,32 @@ namespace xamlgame
             InitializeComponent();
         }
 
+        private void ButtonYes_Click(object sender, RoutedEventArgs e)
+        {
+            UjKartyaHuzasa();
+            Debug.WriteLine("buttonYes");
+        }
+
+
         private void ButtonNo_Click(object sender, RoutedEventArgs e)
         {
+            UjKartyaHuzasa();
             Debug.WriteLine("buttonNo");
         }
 
-        private void ButtonYes_Click(object sender, RoutedEventArgs e)
+        private void UjKartyaHuzasa()
         {
-            Debug.WriteLine("buttonYes");
+            var kartypakli = new FontAwesome.WPF.FontAwesomeIcon[6];
+            kartypakli[0] = FontAwesome.WPF.FontAwesomeIcon.Fax;
+            kartypakli[1] = FontAwesome.WPF.FontAwesomeIcon.Female;
+            kartypakli[2] = FontAwesome.WPF.FontAwesomeIcon.Download;
+            kartypakli[3] = FontAwesome.WPF.FontAwesomeIcon.Edge;
+            kartypakli[4] = FontAwesome.WPF.FontAwesomeIcon.Hashtag;
+            kartypakli[5] = FontAwesome.WPF.FontAwesomeIcon.Mars;
+            var dobokocka = new Random();
+            var dobas = dobokocka.Next(0, 5);
+            CardRight.Icon = kartypakli[dobas];
         }
+
     }
 }
