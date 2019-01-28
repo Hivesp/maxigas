@@ -24,6 +24,9 @@ namespace xamlgame
         public MainWindow()
         {
             InitializeComponent();
+            buttonStart.IsEnabled = true;
+            buttonYes.IsEnabled = false;
+            buttonNo.IsEnabled = false;
         }
 
         private void ButtonYes_Click(object sender, RoutedEventArgs e)
@@ -39,6 +42,15 @@ namespace xamlgame
             Debug.WriteLine("buttonNo");
         }
 
+        private void ButtonStart_Click(object sender, RoutedEventArgs e)
+        {
+            UjKartyaHuzasa();
+            Debug.WriteLine("buttonStart");
+            buttonStart.IsEnabled = false;
+            buttonYes.IsEnabled = true;
+            buttonNo.IsEnabled = true;
+        }
+
         private void UjKartyaHuzasa()
         {
             var kartypakli = new FontAwesome.WPF.FontAwesomeIcon[6];
@@ -52,6 +64,7 @@ namespace xamlgame
             var dobas = dobokocka.Next(0, 5);
             CardRight.Icon = kartypakli[dobas];
         }
+
 
     }
 }
