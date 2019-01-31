@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FontAwesome.WPF;
 
 namespace xamlgame
 {
@@ -21,16 +22,29 @@ namespace xamlgame
     /// </summary>
     public partial class MainWindow : Window
     {
+        private FontAwesomeIcon elozoKartya;
+
         public MainWindow()
         {
             InitializeComponent();
             buttonStart.IsEnabled = true;
             buttonYes.IsEnabled = false;
             buttonNo.IsEnabled = false;
+            
         }
 
         private void ButtonYes_Click(object sender, RoutedEventArgs e)
         {
+            if (elozoKartya == CardRight.Icon)
+            {
+                Debug.WriteLine("helyes");
+            }
+            else
+            {
+                Debug.WriteLine("helytelen");
+            }
+            UjKartyaHuzasa();
+            Debug.WriteLine("buttonNo");
             UjKartyaHuzasa();
             Debug.WriteLine("buttonYes");
         }
@@ -38,6 +52,14 @@ namespace xamlgame
 
         private void ButtonNo_Click(object sender, RoutedEventArgs e)
         {
+            if (elozoKartya!=CardRight.Icon)
+            {
+                Debug.WriteLine("helyes");
+            }
+            else
+            {
+                Debug.WriteLine("helytelen");
+            }
             UjKartyaHuzasa();
             Debug.WriteLine("buttonNo");
         }
@@ -62,6 +84,7 @@ namespace xamlgame
             kartypakli[5] = FontAwesome.WPF.FontAwesomeIcon.Mars;
             var dobokocka = new Random();
             var dobas = dobokocka.Next(0, 5);
+            elozoKartya = CardRight.Icon;
             CardRight.Icon = kartypakli[dobas];
         }
 
