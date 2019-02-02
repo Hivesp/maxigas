@@ -37,16 +37,16 @@ namespace xamlgame
         {
             if (elozoKartya == CardRight.Icon)
             {
-                Debug.WriteLine("helyes");
+                JoValasz();
+
             }
             else
             {
-                Debug.WriteLine("helytelen");
+                RosszValasz();
             }
             UjKartyaHuzasa();
-            Debug.WriteLine("buttonNo");
-            UjKartyaHuzasa();
             Debug.WriteLine("buttonYes");
+
         }
 
 
@@ -54,11 +54,11 @@ namespace xamlgame
         {
             if (elozoKartya!=CardRight.Icon)
             {
-                Debug.WriteLine("helyes");
+                JoValasz();
             }
             else
             {
-                Debug.WriteLine("helytelen");
+                RosszValasz();
             }
             UjKartyaHuzasa();
             Debug.WriteLine("buttonNo");
@@ -88,6 +88,19 @@ namespace xamlgame
             CardRight.Icon = kartypakli[dobas];
         }
 
+        private void RosszValasz()
+        {
+            CardLeft.Icon = FontAwesomeIcon.Close;
+            CardLeft.Foreground = Brushes.Red;
+            Debug.WriteLine("helytelen");
+        }
+
+        private void JoValasz()
+        {
+            CardLeft.Icon = FontAwesomeIcon.Check;
+            CardLeft.Foreground = Brushes.Green;
+            Debug.WriteLine("helyes");
+        }
 
     }
 }
