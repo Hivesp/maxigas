@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -88,19 +89,28 @@ namespace xamlgame
             CardRight.Icon = kartypakli[dobas];
         }
 
-        private void RosszValasz()
-        {
-            CardLeft.Icon = FontAwesomeIcon.Close;
-            CardLeft.Foreground = Brushes.Red;
-            Debug.WriteLine("helytelen");
-        }
-
         private void JoValasz()
         {
             CardLeft.Icon = FontAwesomeIcon.Check;
             CardLeft.Foreground = Brushes.Green;
             Debug.WriteLine("helyes");
+            VisszajelesEltuntetese();
         }
+        private void RosszValasz()
+        {
+            CardLeft.Icon = FontAwesomeIcon.Close;
+            CardLeft.Foreground = Brushes.Red;
+            Debug.WriteLine("helytelen");
+            VisszajelesEltuntetese();
+        }
+        private void VisszajelesEltuntetese()
+        {
+            //eltűnés animálása
+            var animation = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(1000));
+            CardLeft.BeginAnimation(OpacityProperty, animation);
+        }
+
+
 
     }
 }
