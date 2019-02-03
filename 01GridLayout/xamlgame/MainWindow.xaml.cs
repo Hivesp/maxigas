@@ -36,6 +36,25 @@ namespace xamlgame
 
         private void ButtonYes_Click(object sender, RoutedEventArgs e)
         {
+            YesAnswer();
+            Debug.WriteLine("buttonYes");
+
+        }
+
+        private void ButtonNo_Click(object sender, RoutedEventArgs e)
+        {
+            NoAswer();
+            Debug.WriteLine("buttonNo");
+        }
+
+        private void ButtonStart_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("buttonStart");
+            Start();
+        }
+
+        private void YesAnswer()
+        {
             if (elozoKartya == CardRight.Icon)
             {
                 JoValasz();
@@ -46,14 +65,10 @@ namespace xamlgame
                 RosszValasz();
             }
             UjKartyaHuzasa();
-            Debug.WriteLine("buttonYes");
-
         }
-
-
-        private void ButtonNo_Click(object sender, RoutedEventArgs e)
+        private void NoAswer()
         {
-            if (elozoKartya!=CardRight.Icon)
+            if (elozoKartya != CardRight.Icon)
             {
                 JoValasz();
             }
@@ -62,13 +77,13 @@ namespace xamlgame
                 RosszValasz();
             }
             UjKartyaHuzasa();
-            Debug.WriteLine("buttonNo");
         }
 
-        private void ButtonStart_Click(object sender, RoutedEventArgs e)
+
+
+        private void Start()
         {
             UjKartyaHuzasa();
-            Debug.WriteLine("buttonStart");
             buttonStart.IsEnabled = false;
             buttonYes.IsEnabled = true;
             buttonNo.IsEnabled = true;
@@ -110,7 +125,20 @@ namespace xamlgame
             CardLeft.BeginAnimation(OpacityProperty, animation);
         }
 
-
-
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key==Key.Up)
+            {
+                Start();
+            }
+            if (e.Key == Key.Right)
+            {
+                NoAswer();
+            }
+            if (e.Key == Key.Left)
+            {
+                YesAnswer();
+            }
+        }
     }
 }
