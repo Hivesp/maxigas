@@ -39,15 +39,36 @@
 
             <WrapPanel HorizontalAlignment="Center">
                 <Label Margin="5" Padding="5" Content="Pontszám"/>
-                <Label Margin="5" Padding="5" Content="px"/>
+                <Label x:Name="LabelScore" Margin="5" Padding="5" Content="0"/>
                 <Label Margin="5" Padding="5" Content="Reakció idő"/>
-                <Label Margin="5" Padding="5" Content="rx"/>
+                <Label x:Name="LabelReaction" Margin="5" Padding="5" Content="0"/>
                 <Label Margin="5" Padding="5" Content="Átlagos reakció idő"/>
-                <Label Margin="5" Padding="5" Content="árx"/>
+                <Label x:Name="LabelAvgReaction" Margin="5" Padding="5" Content="0"/>
             </WrapPanel>
-            <Button x:Name="buttonYes" Content="Igen" Grid.Row="2" HorizontalAlignment="Left" Margin="5" Padding="10" Click="ButtonYes_Click"/>
-            <Button x:Name="buttonNo" Content="Nem" Grid.Row="2" HorizontalAlignment="Center" Margin="5" Padding="10" Click="ButtonNo_Click"/>
-            <Button x:Name="buttonStart" Content="Kezdés" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,5,5" Padding="10" Height="38" VerticalAlignment="Bottom" Click="ButtonStart_Click"/>
+            <Button x:Name="buttonYes"  Grid.Row="2" HorizontalAlignment="Left" Margin="5" Padding="10" Click="ButtonYes_Click">
+                <Button.Content>
+                    <StackPanel>
+                        <fa:FontAwesome Icon="ArrowLeft"></fa:FontAwesome>
+                        <TextBlock Text="Igen"></TextBlock>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button x:Name="buttonNo"  Grid.Row="2" HorizontalAlignment="Center" Margin="5" Padding="10" Click="ButtonNo_Click">
+                <Button.Content>
+                    <StackPanel>
+                        <fa:FontAwesome Icon="ArrowRight"></fa:FontAwesome>
+                        <TextBlock Text="Nem"></TextBlock>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button x:Name="buttonStart"  Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="10" VerticalAlignment="Bottom" Click="ButtonStart_Click">
+                <Button.Content>
+                    <StackPanel>
+                        <fa:FontAwesome Icon="ArrowUp"></fa:FontAwesome>
+                        <TextBlock Text="Kezdés"></TextBlock>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
         </Grid>
         <ListBox Width="120"></ListBox>
     </Grid>

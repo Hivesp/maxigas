@@ -24,6 +24,7 @@ namespace xamlgame
     public partial class MainWindow : Window
     {
         private FontAwesomeIcon elozoKartya;
+        private int Score;
 
         public MainWindow()
         {
@@ -31,7 +32,7 @@ namespace xamlgame
             buttonStart.IsEnabled = true;
             buttonYes.IsEnabled = false;
             buttonNo.IsEnabled = false;
-            
+            Score = 0;
         }
 
         private void ButtonYes_Click(object sender, RoutedEventArgs e)
@@ -91,26 +92,39 @@ namespace xamlgame
 
         private void UjKartyaHuzasa()
         {
-            var kartypakli = new FontAwesome.WPF.FontAwesomeIcon[6];
-            kartypakli[0] = FontAwesome.WPF.FontAwesomeIcon.Fax;
-            kartypakli[1] = FontAwesome.WPF.FontAwesomeIcon.Female;
-            kartypakli[2] = FontAwesome.WPF.FontAwesomeIcon.Download;
-            kartypakli[3] = FontAwesome.WPF.FontAwesomeIcon.Edge;
-            kartypakli[4] = FontAwesome.WPF.FontAwesomeIcon.Hashtag;
-            kartypakli[5] = FontAwesome.WPF.FontAwesomeIcon.Mars;
+            var kartypakli = new FontAwesomeIcon[6];
+            kartypakli[0] = FontAwesomeIcon.Fax;
+            kartypakli[1] = FontAwesomeIcon.Female;
+            kartypakli[2] = FontAwesomeIcon.Download;
+            kartypakli[3] = FontAwesomeIcon.Edge;
+            kartypakli[4] = FontAwesomeIcon.Hashtag;
+            kartypakli[5] = FontAwesomeIcon.Mars;
+            var AnimationOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(100));
+            var AnimationIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(100));
             var dobokocka = new Random();
             var dobas = dobokocka.Next(0, 5);
+            CardRight.BeginAnimation(OpacityProperty, AnimationOut);
             elozoKartya = CardRight.Icon;
+            //kártya eltűntetése
+            CardRight.BeginAnimation(OpacityProperty, AnimationOut);
+            //új kártya húzása
             CardRight.Icon = kartypakli[dobas];
+            //kártya megjelenítése
+            CardRight.BeginAnimation(OpacityProperty, AnimationIn);
         }
 
         private void JoValasz()
         {
+
             CardLeft.Icon = FontAwesomeIcon.Check;
             CardLeft.Foreground = Brushes.Green;
             Debug.WriteLine("helyes");
+
+            Scoring(true);
+
             VisszajelesEltuntetese();
         }
+
         private void RosszValasz()
         {
             CardLeft.Icon = FontAwesomeIcon.Close;
@@ -118,6 +132,22 @@ namespace xamlgame
             Debug.WriteLine("helytelen");
             VisszajelesEltuntetese();
         }
+
+        private void Scoring(bool isGoodAnswer)
+        {
+            if (isGoodAnswer==true)
+            {
+                Score += 100;
+            }
+            else
+            {
+                Score -= 100;
+            }
+            LabelScore.Content = Score;
+
+
+        }
+
         private void VisszajelesEltuntetese()
         {
             //eltűnés animálása
