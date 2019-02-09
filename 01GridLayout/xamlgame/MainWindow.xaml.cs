@@ -37,14 +37,14 @@ namespace xamlgame
 
         private void ButtonYes_Click(object sender, RoutedEventArgs e)
         {
-            YesAnswer();
+            CheckAnswer(true);
             Debug.WriteLine("buttonYes");
 
         }
 
         private void ButtonNo_Click(object sender, RoutedEventArgs e)
         {
-            NoAswer();
+            CheckAnswer(false);
             Debug.WriteLine("buttonNo");
         }
 
@@ -54,31 +54,36 @@ namespace xamlgame
             Start();
         }
 
-        private void YesAnswer()
+        private void CheckAnswer(bool YesNo)
         {
-            if (elozoKartya == CardRight.Icon)
+            if (YesNo == true)
             {
-                JoValasz();
+         
+                if (elozoKartya == CardRight.Icon)
+                {
+                   Answer(true);
 
+                }
+                else
+                {
+                    Answer(false);
+                }
             }
             else
             {
-                RosszValasz();
+                if (elozoKartya == CardRight.Icon)
+                {
+                    Answer(false);
+
+                }
+                else
+                {
+                    Answer(true);
+                }
             }
             UjKartyaHuzasa();
         }
-        private void NoAswer()
-        {
-            if (elozoKartya != CardRight.Icon)
-            {
-                JoValasz();
-            }
-            else
-            {
-                RosszValasz();
-            }
-            UjKartyaHuzasa();
-        }
+
 
 
 
@@ -113,25 +118,45 @@ namespace xamlgame
             CardRight.BeginAnimation(OpacityProperty, AnimationIn);
         }
 
-        private void JoValasz()
+        //private void JoValasz()
+        //{
+
+        //    CardLeft.Icon = FontAwesomeIcon.Check;
+        //    CardLeft.Foreground = Brushes.Green;
+        //    Debug.WriteLine("helyes");
+
+        //    Scoring(true);
+
+        //    VisszajelesEltuntetese();
+        //}
+
+        //private void RosszValasz()
+        //{
+        //    CardLeft.Icon = FontAwesomeIcon.Close;
+        //    CardLeft.Foreground = Brushes.Red;
+        //    Debug.WriteLine("helytelen");
+        //    VisszajelesEltuntetese();
+        //}
+
+        private void Answer(bool answer)
         {
-
-            CardLeft.Icon = FontAwesomeIcon.Check;
-            CardLeft.Foreground = Brushes.Green;
-            Debug.WriteLine("helyes");
-
-            Scoring(true);
-
+             if (answer==true)
+            {
+                CardLeft.Icon = FontAwesomeIcon.Check;
+                CardLeft.Foreground = Brushes.Green;
+                Debug.WriteLine("helyes");
+                Scoring(answer);
+            }
+            else
+            {
+                CardLeft.Icon = FontAwesomeIcon.Close;
+                CardLeft.Foreground = Brushes.Red;
+                Debug.WriteLine("helytelen");
+                Scoring(answer);
+            }
             VisszajelesEltuntetese();
         }
 
-        private void RosszValasz()
-        {
-            CardLeft.Icon = FontAwesomeIcon.Close;
-            CardLeft.Foreground = Brushes.Red;
-            Debug.WriteLine("helytelen");
-            VisszajelesEltuntetese();
-        }
 
         private void Scoring(bool isGoodAnswer)
         {
@@ -163,11 +188,11 @@ namespace xamlgame
             }
             if (e.Key == Key.Right)
             {
-                NoAswer();
+                CheckAnswer(false);
             }
             if (e.Key == Key.Left)
             {
-                YesAnswer();
+                CheckAnswer(true);
             }
         }
     }
