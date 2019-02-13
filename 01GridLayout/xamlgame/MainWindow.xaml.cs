@@ -14,6 +14,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using FontAwesome.WPF;
 
 namespace xamlgame
@@ -25,6 +26,7 @@ namespace xamlgame
     {
         private FontAwesomeIcon elozoKartya;
         private int Score;
+        private DispatcherTimer pendulumClock;
 
         public MainWindow()
         {
@@ -33,6 +35,18 @@ namespace xamlgame
             buttonYes.IsEnabled = false;
             buttonNo.IsEnabled = false;
             Score = 0;
+            pendulumClock = new DispatcherTimer(
+                TimeSpan.FromSeconds(1)
+                ,DispatcherPriority.Normal
+                ,ClockShock
+                ,Application.Current.Dispatcher
+                );
+            UjKartyaHuzasa();
+        }
+
+        private void ClockShock(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void ButtonYes_Click(object sender, RoutedEventArgs e)
@@ -118,25 +132,6 @@ namespace xamlgame
             CardRight.BeginAnimation(OpacityProperty, AnimationIn);
         }
 
-        //private void JoValasz()
-        //{
-
-        //    CardLeft.Icon = FontAwesomeIcon.Check;
-        //    CardLeft.Foreground = Brushes.Green;
-        //    Debug.WriteLine("helyes");
-
-        //    Scoring(true);
-
-        //    VisszajelesEltuntetese();
-        //}
-
-        //private void RosszValasz()
-        //{
-        //    CardLeft.Icon = FontAwesomeIcon.Close;
-        //    CardLeft.Foreground = Brushes.Red;
-        //    Debug.WriteLine("helytelen");
-        //    VisszajelesEltuntetese();
-        //}
 
         private void Answer(bool answer)
         {

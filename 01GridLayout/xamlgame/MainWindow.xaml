@@ -38,12 +38,14 @@
 
 
             <WrapPanel HorizontalAlignment="Center">
-                <Label Margin="5" Padding="5" Content="Pontszám"/>
-                <Label x:Name="LabelScore" Margin="5" Padding="5" Content="0"/>
-                <Label Margin="5" Padding="5" Content="Reakció idő"/>
-                <Label x:Name="LabelReaction" Margin="5" Padding="5" Content="0"/>
-                <Label Margin="5" Padding="5" Content="Átlagos reakció idő"/>
-                <Label x:Name="LabelAvgReaction" Margin="5" Padding="5" Content="0"/>
+                <Label Content="idő" Margin="5" Padding="5"/>
+                <Label x:Name="LabelPlayTime" Content="00:00:00" Margin="5" Padding="5"/>
+                <Label Content="Pontszám" Margin="5" Padding="5" />
+                <Label Content="0" x:Name="LabelScore" Margin="5" Padding="5" />
+                <Label Content="Reakció idő" Margin="5" Padding="5" />
+                <Label Content="0" x:Name="LabelReaction" Margin="5" Padding="5" />
+                <Label Content="Átlagos reakció idő" Margin="5" Padding="5" />
+                <Label Content="0" x:Name="LabelAvgReaction" Margin="5" Padding="5" />
             </WrapPanel>
             <Button x:Name="buttonYes"  Grid.Row="2" HorizontalAlignment="Left" Margin="5" Padding="10" Click="ButtonYes_Click">
                 <Button.Content>
