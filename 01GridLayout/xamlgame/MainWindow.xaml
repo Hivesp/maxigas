@@ -39,7 +39,7 @@
 
             <WrapPanel HorizontalAlignment="Center">
                 <Label Content="idő" Margin="5" Padding="5"/>
-                <Label x:Name="LabelPlayTime" Content="00:00:00" Margin="5" Padding="5"/>
+                <Label x:Name="LabelPlayTime" Content="00:00" Margin="5" Padding="5"/>
                 <Label Content="Pontszám" Margin="5" Padding="5" />
                 <Label Content="0" x:Name="LabelScore" Margin="5" Padding="5" />
                 <Label Content="Reakció idő" Margin="5" Padding="5" />

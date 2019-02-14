@@ -27,6 +27,7 @@ namespace xamlgame
         private FontAwesomeIcon elozoKartya;
         private int Score;
         private DispatcherTimer pendulumClock;
+        private TimeSpan playTime;
 
         public MainWindow()
         {
@@ -35,18 +36,24 @@ namespace xamlgame
             buttonYes.IsEnabled = false;
             buttonNo.IsEnabled = false;
             Score = 0;
+            playTime = TimeSpan.FromMilliseconds(0);
+            //időzítő létrehozása
             pendulumClock = new DispatcherTimer(
                 TimeSpan.FromSeconds(1)
                 ,DispatcherPriority.Normal
                 ,ClockShock
                 ,Application.Current.Dispatcher
                 );
+            //időzítő megállítása
+            pendulumClock.Stop();
             UjKartyaHuzasa();
         }
 
         private void ClockShock(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            playTime += TimeSpan.FromSeconds(1);
+            //00:00 format használata :00 a vátozó után
+            LabelPlayTime.Content= $"{playTime.Minutes:00}:{playTime.Seconds:00}";
         }
 
         private void ButtonYes_Click(object sender, RoutedEventArgs e)
@@ -107,6 +114,8 @@ namespace xamlgame
             buttonStart.IsEnabled = false;
             buttonYes.IsEnabled = true;
             buttonNo.IsEnabled = true;
+            //időzítő indítása
+            pendulumClock.Start();
         }
 
         private void UjKartyaHuzasa()
