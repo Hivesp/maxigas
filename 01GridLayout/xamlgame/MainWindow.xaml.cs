@@ -28,6 +28,7 @@ namespace xamlgame
         private int Score;
         private DispatcherTimer pendulumClock;
         private Stopwatch stopwatch;
+        private List<long> listReactionTimes;
         private TimeSpan playTime;
 
         public MainWindow()
@@ -47,6 +48,8 @@ namespace xamlgame
                 );
             //stopper óra
             stopwatch = new Stopwatch();
+            //reakció idők listája
+            listReactionTimes = new List<long>();
             //időzítő megállítása
             pendulumClock.Stop();
             UjKartyaHuzasa();
@@ -179,8 +182,10 @@ namespace xamlgame
                 Score -= 100;
             }
             LabelScore.Content = Score;
-
-            LabelReactionTime.Content = $"{stopwatch.ElapsedMilliseconds}/{0}";
+            //stopwatch.Stop();
+            //listába írás ".Add"
+            listReactionTimes.Add(stopwatch.ElapsedMilliseconds);
+            LabelReactionTime.Content = $"{listReactionTimes.Last()}/{(long)listReactionTimes.Average()}";
 
         }
 
