@@ -27,6 +27,7 @@ namespace xamlgame
         private FontAwesomeIcon elozoKartya;
         private int Score;
         private DispatcherTimer pendulumClock;
+        private Stopwatch stopwatch;
         private TimeSpan playTime;
 
         public MainWindow()
@@ -44,6 +45,8 @@ namespace xamlgame
                 ,ClockShock
                 ,Application.Current.Dispatcher
                 );
+            //stopper óra
+            stopwatch = new Stopwatch();
             //időzítő megállítása
             pendulumClock.Stop();
             UjKartyaHuzasa();
@@ -139,6 +142,9 @@ namespace xamlgame
             CardRight.Icon = kartypakli[dobas];
             //kártya megjelenítése
             CardRight.BeginAnimation(OpacityProperty, AnimationIn);
+            //stopper indítása
+            stopwatch.Restart();
+
         }
 
 
@@ -174,6 +180,7 @@ namespace xamlgame
             }
             LabelScore.Content = Score;
 
+            LabelReactionTime.Content = $"{stopwatch.ElapsedMilliseconds}/{0}";
 
         }
 
